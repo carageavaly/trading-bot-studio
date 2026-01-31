@@ -1,24 +1,19 @@
 {
   "name": "trading-bot-studio",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": true,
   "main": "electron/main/main.js",
-
   "scripts": {
     "dev": "concurrently \"npm:dev:renderer\" \"npm:dev:electron\"",
     "dev:renderer": "vite",
     "dev:electron": "wait-on http://localhost:5173 && electron .",
-
     "build": "vite build && npm run build:electron",
     "build:electron": "tsc -p tsconfig.node.json",
-
     "start": "electron .",
     "typecheck": "tsc -p tsconfig.app.json && tsc -p tsconfig.node.json",
-
     "dist": "npm run build && electron-builder",
     "release": "npm version patch && git push && git push --tags"
   },
-
   "dependencies": {
     "electron-log": "^5.4.3",
     "electron-updater": "^6.7.3",
@@ -28,7 +23,6 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0"
   },
-
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
     "concurrently": "^8.0.0",
@@ -38,55 +32,56 @@
     "vite": "^7.3.1",
     "wait-on": "^7.0.1"
   },
-
   "build": {
     "appId": "com.carageavaly.tradingbot",
     "productName": "TradingBot Studio",
-
     "directories": {
       "output": "release",
       "buildResources": "resources"
     },
-
     "files": [
       "dist/**/*",
       "electron/main/**/*",
       "electron/preload/**/*",
       "package.json"
     ],
-
     "asar": true,
     "npmRebuild": false,
-
     "extraMetadata": {
       "main": "electron/main/main.js"
     },
-
     "artifactName": "${productName}-${version}-${os}.${ext}",
-
     "win": {
-      "target": ["nsis"],
+      "target": [
+        "nsis"
+      ],
       "icon": "resources/icon.ico",
-      "publish": ["github"]
+      "publish": [
+        "github"
+      ]
     },
-
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     },
-
     "mac": {
-      "target": ["dmg"],
+      "target": [
+        "dmg"
+      ],
       "icon": "resources/icon.icns",
-      "publish": ["github"]
+      "publish": [
+        "github"
+      ]
     },
-
     "linux": {
-      "target": ["AppImage"],
+      "target": [
+        "AppImage"
+      ],
       "icon": "resources/icon.png",
-      "publish": ["github"]
+      "publish": [
+        "github"
+      ]
     },
-
     "publish": [
       {
         "provider": "github",
