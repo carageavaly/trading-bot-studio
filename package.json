@@ -32,7 +32,7 @@
     "wait-on": "^7.0.1"
   },
   "build": {
-    "appId": "com.valentin.tradingbot",
+    "appId": "com.carageavaly.tradingbot",
     "productName": "TradingBot Studio",
     "directories": {
       "output": "release",
@@ -74,7 +74,7 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "Valentin",
+        "owner": "Carageavaly",
         "repo": "trading-bot-studio"
       }
     ]
