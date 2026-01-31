@@ -1,0 +1,82 @@
+{
+  "name": "trading-bot-studio",
+  "version": "1.5.3",
+  "private": true,
+  "main": "electron/main/main.js",
+  "scripts": {
+    "dev": "concurrently \"npm:dev:renderer\" \"npm:dev:electron\"",
+    "dev:renderer": "vite",
+    "dev:electron": "wait-on http://localhost:5173 && electron .",
+    "build": "vite build && npm run build:electron",
+    "build:electron": "tsc -p tsconfig.node.json",
+    "start": "electron .",
+    "typecheck": "tsc -p tsconfig.app.json && tsc -p tsconfig.node.json",
+    "dist": "npm run build && electron-builder"
+  },
+  "dependencies": {
+    "electron-log": "^5.4.3",
+    "electron-updater": "^6.7.3",
+    "mobx": "^6.0.0",
+    "mobx-react-lite": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "concurrently": "^8.0.0",
+    "electron": "^40.1.0",
+    "electron-builder": "^26.6.0",
+    "typescript": "^5.0.0",
+    "vite": "^7.3.1",
+    "wait-on": "^7.0.1"
+  },
+  "build": {
+    "appId": "com.valentin.tradingbot",
+    "productName": "TradingBot Studio",
+    "directories": {
+      "output": "release",
+      "buildResources": "resources"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/main/**/*",
+      "electron/preload/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "npmRebuild": false,
+    "extraMetadata": {
+      "main": "electron/main/main.js"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "resources/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "resources/icon.icns"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "resources/icon.png"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Valentin",
+        "repo": "trading-bot-studio"
+      }
+    ]
+  }
+}

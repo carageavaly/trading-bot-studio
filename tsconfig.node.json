@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+
+    "types": ["node"],
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+
+    "baseUrl": "./",
+    "paths": {
+      "@main/*": ["electron/main/*"],
+      "@preload/*": ["electron/preload/*"]
+    }
+  },
+
+  "include": [
+    "electron/main",
+    "electron/preload"
+  ]
+}
